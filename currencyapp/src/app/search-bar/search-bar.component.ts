@@ -50,16 +50,23 @@ export class SearchBarComponent implements OnInit {
     this.printCurrencies();
   }
 
-  printCurrencies = function () {
+  printCurrencies() {
     let datalistCurrencies = document.getElementById("currencies");
     let currenciesOptions = '';
     for (var i = 0; i < this.currencies.length; i++) {
-      console.log(this.currencies[i]);
       currenciesOptions += '<option value="' + this.currencies[i] + '"></option>';
-      console.log(datalistCurrencies);
-    }
+    };
 
     datalistCurrencies.innerHTML = currenciesOptions;
   }
+  validateInput($event) {
+    $event.preventDefault();
+    let inputField = (<HTMLInputElement>document.getElementById("searchBar")).value;
+    console.log(inputField)
+    if (inputField = "") {
+      alert("Funkade ej");
+      return false;
+    }
+  };
 
 }
