@@ -1,3 +1,14 @@
-<p>
-  search-bar works!
-</p>
+<div class="row" id="row">
+  <div class="col-11">
+    <input type="text" id="searchBar" placeholder="Search" list="currencies">
+    <datalist id="currencies">
+      <option value="SEK"></option>
+      <option value="EUR"></option>
+    </datalist>
+  </div>
+  <div class="col-1">
+    <button class="btn" id="submit" type="submit">
+      <i class="fas fa-search"></i>
+    </button>
+  </div>
+</div>
