@@ -54,9 +54,7 @@ export class SearchBarComponent implements OnInit {
     let datalistCurrencies = document.getElementById("currencies");
     let currenciesOptions = '';
     for (var i = 0; i < this.currencies.length; i++) {
-      console.log(this.currencies[i]);
       currenciesOptions += '<option value="' + this.currencies[i] + '"></option>';
-      console.log(datalistCurrencies);
     }
 
     datalistCurrencies.innerHTML = currenciesOptions;
