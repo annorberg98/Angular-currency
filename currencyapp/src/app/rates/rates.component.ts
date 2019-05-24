@@ -20,18 +20,46 @@ export class RatesComponent implements OnInit {
     //this.rates = await this.currency.getRates().toPromise();
   }
 
+  async showRatesFromLocal() {
+    let storageRates = this.getStorage();
+    console.log(storageRates);
+    let symbolsList: [] = storageRates.currencies;
+
+    console.log(symbolsList);
+
+    this.rates = await this.currency.getSymbols(symbolsList).toPromise();
+  }
+
+  inLocal(key) {
+    let storage = this.getStorage();
+    for (let i = 0; i <= storage.currencies.length; i++) {
+      if (storage.currencies[i] == key) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   ngOnInit() {
     this.generateFromStorage();
     console.log(this.rates);
   }
 
-  generateFromStorage() {
+  storageExists() {
     let storage = this.getStorage();
     if (storage === null || storage === { "currencies": [] }) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  generateFromStorage() {
+    let storage = this.getStorage();
+    if (!this.storageExists()) {
       this.showRates();
     } else {
-      this.showRates();
-      console.log("Fattas personliga just nu");
+      this.showRatesFromLocal();
     }
   }
 
@@ -58,6 +86,24 @@ export class RatesComponent implements OnInit {
       localStorage.setItem('currencies', newStorage);
     }
 
+  }
+
+  switchChange($event) {
+    if ($event) {
+      this.showRatesFromLocal();
+      console.log("Local")
+    } else {
+      this.showRates();
+      console.log("Get from API");
+    }
+  }
+
+  switchCheckControl() {
+    if (this.storageExists()) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

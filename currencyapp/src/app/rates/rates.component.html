@@ -1,4 +1,9 @@
 <div class="container">
+  <div class="row">
+    Show all
+    <ui-switch [checked]="switchCheckControl()" (change)="switchChange($event)"></ui-switch>
+    Show favorites
+  </div>
   <div class="table-responsive">
     <table class="table table-striped">
       <caption>Updated: {{ rates.date }}</caption>
@@ -13,7 +18,9 @@
         <tr *ngFor="let key of objectKeys(rates.rates)">
           <td>{{ key }}</td>
           <td>{{ rates.rates[key] }}</td>
-          <td><button type="button" class="btn btn-success" (click)="addToStorage(key)">Save</button></td>
+          <td *ngIf="inLocal(key); else elseBlock"><i class="fas fa-star"></i></td>
+          <ng-template #elseBlock><button type="button" class="btn btn-success"
+              (click)="addToStorage(key)">Save</button></ng-template>
         </tr>
       </tbody>
     </table>
