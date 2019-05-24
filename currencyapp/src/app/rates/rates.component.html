@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <caption>Updated: {{ rates.date }}</caption>
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Currency</th>
+          <th scope="col">Rate</th>
+          <th scope="col">Save</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let key of objectKeys(rates.rates)">
+          <td>{{ key }}</td>
+          <td>{{ rates.rates[key] }}</td>
+          <td><button type="button" class="btn btn-success" (click)="addToStorage(key)">Save</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
