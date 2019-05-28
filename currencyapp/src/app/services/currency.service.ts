@@ -57,7 +57,7 @@ export class CurrencyService {
   getSymbols(symbols) {
     const params = new HttpParams().set('base', this.base).set('symbols', symbols.join(','));
 
-    return this.http.get(this.url, { params })
+    return this.http.get(this.url, { params });
   }
 
 

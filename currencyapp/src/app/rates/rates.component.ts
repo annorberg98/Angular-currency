@@ -21,17 +21,27 @@ export class RatesComponent implements OnInit {
   }
 
   async showRatesFromLocal() {
-    let storageRates = this.getStorage();
-    console.log(storageRates);
-    let symbolsList: [] = storageRates.currencies;
+    if (this.storageExists()) {
+      let storageRates = this.getStorage();
+      let symbolsList: [] = storageRates.currencies;
 
-    console.log(symbolsList);
+      this.rates = await this.currency.getSymbols(symbolsList).toPromise();
+      console.log(this.rates);
+    } else {
+      this.rates = {
+        "base": "SEK",
+        "rates": {},
+        "date": "-"
+      }
+    }
 
-    this.rates = await this.currency.getSymbols(symbolsList).toPromise();
   }
 
   inLocal(key) {
     let storage = this.getStorage();
+    if (storage == null) {
+      return false;
+    }
     for (let i = 0; i <= storage.currencies.length; i++) {
       if (storage.currencies[i] == key) {
         return true;
@@ -42,12 +52,12 @@ export class RatesComponent implements OnInit {
 
   ngOnInit() {
     this.generateFromStorage();
-    console.log(this.rates);
   }
 
   storageExists() {
-    let storage = this.getStorage();
-    if (storage === null || storage === { "currencies": [] }) {
+    let storage = localStorage.getItem('currencies')
+
+    if (storage == null || storage == '{"currencies":[]}') {
       return false;
     } else {
       return true;
@@ -56,10 +66,10 @@ export class RatesComponent implements OnInit {
 
   generateFromStorage() {
     let storage = this.getStorage();
-    if (!this.storageExists()) {
-      this.showRates();
-    } else {
+    if (this.storageExists()) {
       this.showRatesFromLocal();
+    } else {
+      this.showRates();
     }
   }
 
@@ -70,7 +80,6 @@ export class RatesComponent implements OnInit {
 
   addToStorage(key: string) {
     let currencyStorage = this.getStorage();
-
 
     let storage = { "currencies": [] }
     let newItem = key;
@@ -103,6 +112,19 @@ export class RatesComponent implements OnInit {
       return true;
     } else {
       return false;
+    }
+  }
+
+  deleteFromLocalstorage(currency) {
+    if (this.inLocal(currency)) {
+      let stg = this.getStorage();
+      for (var i = 0; i <= stg.currencies.length; i++) {
+        if (stg.currencies[i] == currency) {
+          stg.currencies.splice(i, 1);
+        }
+      }
+      localStorage.clear();
+      localStorage.setItem('currencies', JSON.stringify(stg));
     }
   }
 
