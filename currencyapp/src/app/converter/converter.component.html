@@ -1,25 +1,25 @@
-<form id="converter" style="max-width: 30%">
+<form id="converter">
   <div class="form-row">
-    <div class="col">
-      <label for="fromCurrecy">Choose From Currency</label>
+    <div class="col-6">
+      <label for="fromCurrecy">Choose Currency</label>
       <select class="form-control currencies" name="fromCurrecy" id="fromCurrency" disabled>
         <option>SEK</option>
       </select>
     </div>
-    <div class="col">
+    <div class="col-6">
       <label for="fromCurrencyAmount">Amount:</label>
       <input type="number" class="form-control" name="fromCurrencyAmount" id="fromCurrencyAmount"
         [(ngModel)]="convertFrom">
     </div>
   </div>
   <div class="form-row">
-    <div class="col">
+    <div class="col-6">
       <label for="toCurrecy">Choose Currency</label>
       <select class="form-control currencies" name="toCurrecy" id="toCurrency" [(ngModel)]="currencyTo">
         <option *ngFor="let Currency of currencies">{{Currency}}</option>
       </select>
     </div>
-    <div class="col">
+    <div class="col-6">
       <label for="toCurrencyAmount">Amount:</label>
       <input type="number" class="form-control" name="toCurrencyAmount" id="toCurrencyAmount" [value]="calculator()"
         disabled>

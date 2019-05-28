@@ -1,0 +1,11 @@
+#converter{
+	width: 20%;
+	margin: auto;
+	padding: 2vh;
+}
+
+@media screen and (max-width: 992px){
+	#converter{
+		width: 100%;
+	}
+}
