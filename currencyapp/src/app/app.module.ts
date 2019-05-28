@@ -4,11 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { RatesComponent } from './rates/rates.component';
+import { ConverterComponent } from './converter/converter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RatesComponent,
+    ConverterComponent
   ],
   imports: [
     BrowserModule,
