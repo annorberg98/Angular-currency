@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CurrencyService } from '../services/currency.service';
 
 @Component({
   selector: 'app-converter',
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ConverterComponent implements OnInit {
 
   public currencies = [
+    "SEK",
     "AUD",
     "BGN",
     "BRL",
@@ -35,7 +37,6 @@ export class ConverterComponent implements OnInit {
     "PLN",
     "RON",
     "RUB",
-    "SEK",
     "SGD",
     "THB",
     "TRY",
@@ -44,9 +45,26 @@ export class ConverterComponent implements OnInit {
 
   ];
 
-  constructor() { }
+  public rates;
+  public convertFrom;
+  public currencyTo;
+
+  constructor(private currency: CurrencyService) { }
+
+  async getRates() {
+    this.rates = this.currency.rawJson;
+    // this.rates = await this.currency.getRates().toPromise();
+  }
+
+  calculator() {
+    return this.convertFrom * this.rates.rates[this.currencyTo];
+  }
+
+
 
   ngOnInit() {
+    this.getRates();
+    //this.printCurrencies(this.currencies);
 
   }
 
