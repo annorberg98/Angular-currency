@@ -50,6 +50,7 @@ export class RatesComponent implements OnInit {
     return false;
   }
 
+
   ngOnInit() {
     this.generateFromStorage();
   }
