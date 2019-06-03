@@ -16,8 +16,8 @@ export class RatesComponent implements OnInit {
   public objectKeys = Object.keys;
 
   async showRates() {
-    this.rates = this.currency.rawJson;
-    //this.rates = await this.currency.getRates().toPromise();
+    //this.rates = this.currency.rawJson;
+    this.rates = await this.currency.getRates().toPromise();
   }
 
   async showRatesFromLocal() {
