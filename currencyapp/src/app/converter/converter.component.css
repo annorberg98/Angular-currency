@@ -4,7 +4,7 @@
 	padding: 2vh;
 }
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 1352px){
 	#converter{
 		width: 100%;
 	}
