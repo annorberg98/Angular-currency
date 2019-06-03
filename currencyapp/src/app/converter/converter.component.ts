@@ -9,39 +9,39 @@ import { CurrencyService } from '../services/currency.service';
 export class ConverterComponent implements OnInit {
 
   public currencies = [
-    "AUD: Australian Dollar",
-    "BGN: Bulgarian Lev",
-    "BRL: Brazilian Real",
-    "CAD: Canadian Dollar",
-    "CHF: Swiss Franc",
-    " CNY: Chinese Renmibi",
-    "CZK: Czech Koruna",
-    "DKK: Danish Krone",
-    "EUR: Euro",
-    "GBP: Pound Sterling",
-    "HKD: Hong Kong Dollar",
-    "HRK: Croatian Kuna",
-    "HUF: Hungarian Forint",
-    "IDR: Indonesian Rupiah",
-    "ILS: Israeli New Shekel",
-    "INR: Indian Rupee",
-    "ISK: Icelandic Króna",
-    "JPY: Japanese Yen",
-    "KRW: South Korean Won",
-    "MXN: Mexican Peso",
-    "MYR: Malaysian Ringgit",
-    "NOK: Norwegian Krone",
-    "NZD: New Zealand Dollar",
-    "PHP: Philippine Peso",
-    "PLN: Polish Złoty",
-    "RON: Romanian Leu",
-    "RUB: Russian Ruble",
-    "SEK: Swedish krona",
-    "SGD: Singapore Dollar",
-    "THB: Thai Baht",
-    "TRY: Turkish Lira",
-    "USD: United States Dollar",
-    "ZAR: South African Rand"
+    "AUD",
+    "BGN",
+    "BRL",
+    "CAD",
+    "CHF",
+    "CNY",
+    "CZK",
+    "DKK",
+    "EUR",
+    "GBP",
+    "HKD",
+    "HRK",
+    "HUF",
+    "IDR",
+    "ILS",
+    "INR",
+    "ISK",
+    "JPY",
+    "KRW",
+    "MXN",
+    "MYR",
+    "NOK",
+    "NZD",
+    "PHP",
+    "PLN",
+    "RON",
+    "RUB",
+    "SEK",
+    "SGD",
+    "THB",
+    "TRY",
+    "USD",
+    "ZAR"
   ];
 
   public rates;
@@ -51,8 +51,9 @@ export class ConverterComponent implements OnInit {
   constructor(private currency: CurrencyService) { }
 
   async getRates() {
+    this.rates = await this.currency.getRates().toPromise();
     this.rates = this.currency.rawJson;
-    // this.rates = await this.currency.getRates().toPromise();
+    //
   }
 
   calculator() {
