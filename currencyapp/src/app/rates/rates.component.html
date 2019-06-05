@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     Show all
+    <!-- Felmeddelandet här beror på att när sidan laddas upp så är this.rates satt till undefined. Denne får värde efter att HTTP Request är klar -->
     <ui-switch [checked]="switchCheckControl()" (change)="switchChange($event)"></ui-switch>
     Show favorites
   </div>

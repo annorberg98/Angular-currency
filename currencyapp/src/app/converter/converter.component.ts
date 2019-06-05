@@ -51,9 +51,9 @@ export class ConverterComponent implements OnInit {
   constructor(private currency: CurrencyService) { }
 
   async getRates() {
+
     this.rates = await this.currency.getRates().toPromise();
-    this.rates = this.currency.rawJson;
-    //
+
   }
 
   calculator() {
@@ -63,7 +63,7 @@ export class ConverterComponent implements OnInit {
 
   ngOnInit() {
     this.getRates();
-    //this.printCurrencies(this.currencies);
+
 
   }
 

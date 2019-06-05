@@ -15,6 +15,7 @@
   <div class="form-row">
     <div class="col-6">
       <label for="toCurrecy">Choose Currency</label>
+      <!-- Felmeddelandet här beror på att när sidan laddas upp så är this.rates satt till undefined. Denne får värde efter att HTTP Request är klar -->
       <select class="form-control currencies" name="toCurrecy" id="toCurrency" [(ngModel)]="currencyTo">
         <option *ngFor="let Currency of currencies">{{Currency}}</option>
       </select>
